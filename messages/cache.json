@@ -1,6 +1,7 @@
 {
-  "commandDescription": "Clear/invalidate a platform cache.",
-  "nameFlagDescription": "name to print",
-  "forceFlagDescription": "example boolean flag",
-  "errorNoOrgResults": "No results found for the org '%s'."
+  "commandDescription": "Clear/invalidate a Platform cache.",
+  "nameFlagDescription": "Name of the Platform Cache partition.",
+  "noPartitionFound": "No partition found for name: '%s'.",
+  "cacheClearSuccessful" : "Clear operation for the Platform cache partition '%s'  was successful",
+  "cacheEmpty" : "Clear cache button not found although partition '%s' exists. Is the cache empty?"
 }

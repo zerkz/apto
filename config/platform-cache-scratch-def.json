@@ -1,0 +1,6 @@
+{
+    "orgName": "CacheLand",
+    "edition": "Enterprise",
+    "features": ["PlatformCache"],
+    "settings": {}
+  }

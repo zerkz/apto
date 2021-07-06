@@ -1,15 +1,18 @@
 {
-  "name": "zfdx",
+  "name": "apto",
   "description": "Plugin that provides replacement APIs for configuring elements that have no REST/SOAP API equvalient on the Salesforce platform.",
   "version": "0.0.0",
   "author": "Zack Whipkey @zerkz",
-  "bugs": "https://github.com/zerkz/zfdx/issues",
+  "bugs": "https://github.com/zerkz/apto/issues",
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/errors": "^1",
     "@salesforce/command": "^3",
     "@salesforce/core": "^2",
+    "@types/cheerio": "^0.22.29",
+    "@types/node": "^16.0.0",
+    "cheerio": "^1.0.0-rc.10",
     "puppeteer": "^10.1.0",
     "tslib": "^2"
   },
@@ -24,6 +27,7 @@
     "@types/chai": "^4",
     "@types/jsforce": "^1.9.29",
     "@types/mocha": "^8",
+    "@types/puppeteer": "^5.4.3",
     "@typescript-eslint/eslint-plugin": "^4",
     "@typescript-eslint/parser": "^4",
     "chai": "^4",
@@ -57,7 +61,7 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
-  "homepage": "https://github.com/zerkz/zfdx",
+  "homepage": "https://github.com/zerkz/apto",
   "keywords": [
     "sfdx-plugin"
   ],
@@ -66,18 +70,18 @@
     "commands": "./lib/commands",
     "bin": "sfdx",
     "topics": {
-      "zfdx": {
+      "apto": {
         "description": "Replacement APIs for configuration that only can be done via Salesforce UI/browser."
-      }, 
-      "zfdx:cache" : {
-        "description" : "Modify the Platform cache."
+      },
+      "apto:cache": {
+        "description": "Modify the Platform cache."
       }
     },
     "devPlugins": [
       "@oclif/plugin-help"
     ]
   },
-  "repository": "zerkz/zfdx",
+  "repository": "zerkz/apto",
   "scripts": {
     "lint": "eslint src/**/*.ts test/**/*.ts",
     "postpack": "rimraf oclif.manifest.json",
