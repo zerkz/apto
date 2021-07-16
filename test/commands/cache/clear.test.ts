@@ -8,7 +8,7 @@ describe('cache:clear', () => {
       const requestMap = ensureJsonMap(request);
       if (/Organization/.exec(ensureString(requestMap.url))) {
         return Promise.resolve({
-          records: [
+          records: {
             {
               Name: 'Super Awesome Org',
               TrialExpirationDate: '2018-03-20T23:24:11.000+0000',

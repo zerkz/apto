@@ -3,5 +3,6 @@
   "nameFlagDescription": "Name of the Platform Cache partition.",
   "noPartitionFound": "No partition found for name: '%s'.",
   "cacheClearSuccessful" : "Clear operation for the Platform cache partition '%s'  was successful",
-  "cacheEmpty" : "Clear cache button not found although partition '%s' exists. Is the cache empty?"
+  "cacheEmpty" : "Clear cache button not found although partition '%s' exists. Is the cache empty?",
+  "recalculateButtonNotFound" : "Recalculate button not found, page may of failed to load, or this plugin might need updated."
 }

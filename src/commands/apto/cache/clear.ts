@@ -16,11 +16,11 @@ export default class Clear extends SfdxCommand {
   public static description = messages.getMessage('commandDescription');
 
   public static examples = [
-    `$ sfdx cache:clear --targetusername myOrg@example.com 
-    Default Partition:
+    `$ sfdx apto:cache:clear --targetusername myOrg@example.com 
+    Clear operation for the Platform cache partition 'default_cache' was successful
   `,
-    `$ sfdx hello:org --targetusername myOrg@example.com
-This is org: MyOrg and I will be around until Tue Mar 20 2018!
+    `$ sfdx apto:cache:clear -u myOrg@example.com -n foo
+    Clear operation for the Platform cache partition 'foo' was successful
   `,
   ];
 
@@ -42,8 +42,6 @@ This is org: MyOrg and I will be around until Tue Mar 20 2018!
 
   // Set this to true if your command requires a project workspace; 'requiresProject' is false by default
   protected static requiresProject = false;
-
-  private static CLEAR_CACHE_BTN_SELECTOR = 'input[value="Clear Cache"]';
 
   public async run(): Promise<AnyJson> {
     let name = (this.flags.name) as string;
@@ -86,7 +84,14 @@ This is org: MyOrg and I will be around until Tue Mar 20 2018!
         await dialog.accept();
       });
       try {
-        await partitionDetailPageResult.frame().click(Clear.CLEAR_CACHE_BTN_SELECTOR, {});
+        await partitionDetailPageResult.frame().click('input[value="Recalculate"]');
+        await page.waitForNavigation({timeout : 3000});
+      } catch {
+        this.ux.warn(messages.getMessage('recalculateButtonNotFound'));
+      }
+
+      try {
+        await partitionDetailPageResult.frame().click('input[value="Clear Cache"]');
       } catch (e) {
         await browser.close();
         const cacheEmptyMessage = messages.getMessage('cacheEmpty', [name]);
