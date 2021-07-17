@@ -13,37 +13,27 @@ APIs for configuring elements that have no REST/SOAP API equvalient on the Sales
 [![License](https://img.shields.io/npm/l/apto.svg)](https://github.com/zerkz/apto/blob/main/package.json)
 
 <!-- toc -->
+* [apto - an SFDX Plugin to automate via puppeteer.](#apto---an-sfdx-plugin-to-automate-via-puppeteer)
 * [Debugging your plugin](#debugging-your-plugin)
 <!-- tocstop -->
 <!-- install -->
-<!-- usage -->
-```sh-session
-$ npm install -g apto
-$ sfdx COMMAND
-running command...
-$ sfdx (-v|--version|version)
-apto/0.0.0 win32-x64 node-v15.5.0
-$ sfdx --help [COMMAND]
-USAGE
-  $ sfdx COMMAND
-...
-```
-<!-- usagestop -->
+sfdx plugins:install @zdware/apto 
+<!-- installstop -->
 <!-- commands -->
-* [`sfdx apto:cache:clear [-n <string>] [-f] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-helloorg--n-string--f--v-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
+* [`sfdx apto:cache:clear [-n <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-aptocacheclear--n-string--v-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
 
-## `sfdx apto:cache:clear [-n <string>] [-f] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
+## `sfdx apto:cache:clear [-n <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
-print a greeting and your org IDs
+Clear/invalidate a Platform cache.
 
 ```
 USAGE
-  $ sfdx hello:org [-n <string>] [-f] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel 
+  $ sfdx apto:cache:clear [-n <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel 
   trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
 
 OPTIONS
-  -f, --force                                                                       example boolean flag
-  -n, --name=name                                                                   name to print
+  -n, --name=name                                                                   Name of the Platform Cache
+                                                                                    partition.
 
   -u, --targetusername=targetusername                                               username or alias for the target
                                                                                     org; overrides default target org
@@ -60,15 +50,14 @@ OPTIONS
                                                                                     this command invocation
 
 EXAMPLES
-  $ sfdx hello:org --targetusername myOrg@example.com --targetdevhubusername devhub@org.com
-  Hello world! This is org: MyOrg and I will be around until Tue Mar 20 2018!
-  My hub org id is: 00Dxx000000001234
+  $ sfdx apto:cache:clear --targetusername myOrg@example.com 
+       Clear operation for the Platform cache partition 'default_cache' was successful
   
-  $ sfdx hello:org --name myname --targetusername myOrg@example.com
-  Hello myname! This is org: MyOrg and I will be around until Tue Mar 20 2018!
+  $ sfdx apto:cache:clear -u myOrg@example.com -n foo
+       Clear operation for the Platform cache partition 'foo' was successful
 ```
 
-_See code: [src/commands/hello/org.ts](https://github.com/zerkz/zfdx/blob/v0.0.0/src/commands/hello/org.ts)_
+_See code: [src/commands/apto/cache/clear.ts](https://github.com/zerkz/apto/blob/v0.1.0/src/commands/apto/cache/clear.ts)_
 <!-- commandsstop -->
 <!-- debugging-your-plugin -->
 # Debugging your plugin

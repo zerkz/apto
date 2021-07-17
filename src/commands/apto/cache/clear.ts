@@ -1,8 +1,9 @@
 import { flags, SfdxCommand } from '@salesforce/command';
-import { Messages, SfdxError, Org, fs } from '@salesforce/core';
+import { Messages, SfdxError, Org } from '@salesforce/core';
 import { AnyJson } from '@salesforce/ts-types';
 import * as puppeteer from 'puppeteer';
 import * as cheerio from 'cheerio';
+import { URL } from "url";
 
 
 // Initialize Messages with the current plugin directory
@@ -55,7 +56,8 @@ export default class Clear extends SfdxCommand {
     await context.overridePermissions(frontDoorUrl, ['notifications']);
     const page = await browser.newPage();
 
-    const headlessUserAgent = await page.evaluate(() => navigator.userAgent);
+    /* tslint:disable-next-line */ 
+    const headlessUserAgent = await page.evaluate(() => window.navigator.userAgent);
     const chromeUserAgent = headlessUserAgent.replace('HeadlessChrome', 'Chrome');
     await page.setUserAgent(chromeUserAgent);
     const pageResult = await page.goto(frontDoorUrl, { waitUntil: 'networkidle2' });

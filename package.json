@@ -2,7 +2,8 @@
   "name": "apto",
   "description": "Plugin that provides replacement APIs for configuring elements that have no REST/SOAP API equvalient on the Salesforce platform.",
   "version": "0.1.0",
-  "author": "Zack Whipkey @zerkz",
+  "author": "Zack Whipkey Github:@zerkz npm:zdware",
+  "scope": "@zdware",
   "bugs": "https://github.com/zerkz/apto/issues",
   "dependencies": {
     "@oclif/command": "^1",

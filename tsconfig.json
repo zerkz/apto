@@ -1,6 +1,7 @@
 {
   "extends": "@salesforce/dev-config/tsconfig",
   "compilerOptions": {
+    "lib": ["DOM"],
     "outDir": "lib",
     "rootDir": "src"
   },
