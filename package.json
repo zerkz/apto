@@ -1,10 +1,12 @@
 {
-  "name": "apto",
+  "name": "@zdware/apto",
   "description": "Plugin that provides replacement APIs for configuring elements that have no REST/SOAP API equvalient on the Salesforce platform.",
   "version": "0.1.0",
   "author": "Zack Whipkey Github:@zerkz npm:zdware",
   "scope": "@zdware",
-  "bugs": "https://github.com/zerkz/apto/issues",
+  "bugs": {
+    "url": "https://github.com/zerkz/apto/issues"
+  },
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
@@ -82,7 +84,10 @@
       "@oclif/plugin-help"
     ]
   },
-  "repository": "zerkz/apto",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zerkz/apto.git"
+  },
   "scripts": {
     "lint": "eslint src/**/*.ts test/**/*.ts",
     "postpack": "rimraf oclif.manifest.json",
@@ -90,5 +95,9 @@
     "prepack": "rimraf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
     "test": "nyc --extension .ts --require ts-node/register mocha --forbid-only \"test/**/*.test.ts\"",
     "version": "oclif-dev readme && git add README.md"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
   }
 }
