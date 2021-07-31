@@ -1,29 +1,17 @@
 import { expect, test } from '@salesforce/command/lib/test';
 import { ensureJsonMap, ensureString } from '@salesforce/ts-types';
 
-describe('cache:clear', () => {
-  test
-    .withOrg({ username: 'test@org.com' }, true)
-    .withConnectionRequest((request) => {
-      const requestMap = ensureJsonMap(request);
-      if (/Organization/.exec(ensureString(requestMap.url))) {
-        return Promise.resolve({
-          records: {
-            {
-              Name: 'Super Awesome Org',
-              TrialExpirationDate: '2018-03-20T23:24:11.000+0000',
-            },
-          ],
-        });
-      }
-      return Promise.resolve({ records: [] });
-    })
-    .stdout()
-    .command(['hello:org', '--targetusername', 'test@org.com'])
-    .it('runs hello:org --targetusername test@org.com', (ctx) => {
-      expect(true);
-      // expect(ctx.stdout).to.contain(
-      //   'Hello world! This is org: Super Awesome Org and I will be around until Tue Mar 20 2018!'
-      // );
-    });
-});
+// describe('cache:clear', () => {
+//   test
+//     .withOrg({ username: 'test@org.com' }, true)
+//     .withConnectionRequest((request) => {
+      
+//     .stdout()
+//     .command(['hello:org', '--targetusername', 'test@org.com'])
+//     .it('runs hello:org --targetusername test@org.com', (ctx) => {
+//       expect(true);
+//       // expect(ctx.stdout).to.contain(
+//       //   'Hello world! This is org: Super Awesome Org and I will be around until Tue Mar 20 2018!'
+//       // );
+//     });
+// });

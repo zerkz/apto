@@ -5,23 +5,25 @@ import * as puppeteer from 'puppeteer';
 import * as cheerio from 'cheerio';
 import { URL } from "url";
 
+import * as fs from "fs";
+
 
 // Initialize Messages with the current plugin directory
 Messages.importMessagesDirectory(__dirname);
 
 // Load the specific messages for this file. Messages from @salesforce/command, @salesforce/core,
 // or any library that is using the messages framework can also be loaded this way.
-const messages = Messages.loadMessages('@zdware/apto', 'cache-clear');
+const messages = Messages.loadMessages('@zdware/apto', 'cache-create');
 
 export default class Clear extends SfdxCommand {
   public static description = messages.getMessage('commandDescription');
 ;
   public static examples = [
-    `$ sfdx apto:cache:clear --targetusername myOrg@example.com 
-    Clear operation for the Platform cache partition 'default_cache' was successful
+    `$ sfdx apto:cache:create --targetusername myOrg@example.com -n test
+    Create operation for the Platform cache partition 'test'.
   `,
-    `$ sfdx apto:cache:clear -u myOrg@example.com -n foo
-    Clear operation for the Platform cache partition 'foo' was successful
+    `$ sfdx apto:cache:create -u myOrg@example.com -n test -d
+    Create a Platform cache partition with the name 'test', and set it as the default cache.
   `,
   ];
 
@@ -63,9 +65,10 @@ export default class Clear extends SfdxCommand {
     const pageResult = await page.goto(frontDoorUrl, { waitUntil: 'networkidle2' });
     
     const pageText = await pageResult.text();
-    const $partitionList = cheerio.load(pageText);
-    const $partitions = $partitionList('tr .dataRow');
-    const partitions = [];
+    fs.writeFileSync('pageText.html', pageText)
+    const $partitionPage= cheerio.load(pageText);
+    page.click()
+
     $partitions.each((index, ele) => {
       const $partitionRow = $partitionList(ele);
       const $partitionLink = $partitionList(($partitionRow.children().get(3)));
