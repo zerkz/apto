@@ -1,11 +1,11 @@
+import * as fs from "fs";
+import { URL } from "url";
 import { flags, SfdxCommand } from '@salesforce/command';
 import { Messages, SfdxError, Org } from '@salesforce/core';
 import { AnyJson } from '@salesforce/ts-types';
 import * as puppeteer from 'puppeteer';
 import * as cheerio from 'cheerio';
-import { URL } from "url";
 
-import * as fs from "fs";
 
 
 // Initialize Messages with the current plugin directory
@@ -15,7 +15,7 @@ Messages.importMessagesDirectory(__dirname);
 // or any library that is using the messages framework can also be loaded this way.
 const messages = Messages.loadMessages('@zdware/apto', 'cache-create');
 
-export default class Clear extends SfdxCommand {
+export default class Create extends SfdxCommand {
   public static description = messages.getMessage('commandDescription');
 ;
   public static examples = [
@@ -63,10 +63,9 @@ export default class Clear extends SfdxCommand {
     const chromeUserAgent = headlessUserAgent.replace('HeadlessChrome', 'Chrome');
     await page.setUserAgent(chromeUserAgent);
     const pageResult = await page.goto(frontDoorUrl, { waitUntil: 'networkidle2' });
-    
     const pageText = await pageResult.text();
     fs.writeFileSync('pageText.html', pageText)
-    const $partitionPage= cheerio.load(pageText);
+    const $partitionPage = cheerio.load(pageText);
     page.click()
 
     $partitions.each((index, ele) => {
@@ -78,7 +77,8 @@ export default class Clear extends SfdxCommand {
     });
 
     
-    const partition = name ? partitions.find(x => x.name == name) : partitions.find(x => x.default);
+    const partition = name ? partitions.find(x => x.name == name) : partitions.find(x => x.default)
+    
     name = partition ? partition.name : name;
     if (partition) {
       const orgURL = new URL(frontDoorUrl);

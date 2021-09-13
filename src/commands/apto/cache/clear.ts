@@ -61,7 +61,6 @@ export default class Clear extends SfdxCommand {
     const chromeUserAgent = headlessUserAgent.replace('HeadlessChrome', 'Chrome');
     await page.setUserAgent(chromeUserAgent);
     const pageResult = await page.goto(frontDoorUrl, { waitUntil: 'networkidle2' });
-    
     const pageText = await pageResult.text();
     const $partitionList = cheerio.load(pageText);
     const $partitions = $partitionList('tr .dataRow');
